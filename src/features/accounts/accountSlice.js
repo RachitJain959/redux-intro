@@ -15,7 +15,7 @@ export default function accountReducer(state = initialStateAccount, action) {
       if (state.loan > 0) return state;
       return {
         ...state,
-        loan: state.loan + action.payload.amount,
+        loan: action.payload.amount,
         loanPurpose: action.payload.purpose,
         balance: state.balance + action.payload.amount,
       };
@@ -40,11 +40,11 @@ export function withdraw(amount) {
   return { type: 'account/withdraw', payload: amount };
 }
 
-export function requestLoan(amount) {
+export function requestLoan(amount, purpose) {
   return {
     type: 'account/requestLoan',
 
-    payload: { amount: amount, purpose: 'car' },
+    payload: { amount: amount, purpose: purpose },
   };
 }
 export function payLoan() {
